@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asisten Pengisian CPPT Ekstubasi ICU</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+
 <body class="bg-slate-100 min-h-screen py-6 px-4">
 
     <div class="max-w-3xl mx-auto space-y-6">
-        
+
         <!-- HEADER -->
         <div class="bg-white rounded-xl shadow p-6 border-l-4 border-blue-600">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-0.5 rounded">Rangkuman Klinis</span>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-0.5 rounded">Rangkuman
+                        Klinis</span>
                     <h1 class="text-xl font-bold text-gray-800 mt-1" id="dispNama">Pasien: -</h1>
-                    <p class="text-sm text-gray-500">No. RM: <span id="dispRM" class="font-semibold text-gray-700">-</span> | Reg: <span id="dispReg" class="font-semibold text-gray-700">-</span> | Bed: <span id="dispBed">-</span></p>
+                    <p class="text-sm text-gray-500">No. RM: <span id="dispRM"
+                            class="font-semibold text-gray-700">-</span> | Reg: <span id="dispReg"
+                            class="font-semibold text-gray-700">-</span> | Bed: <span id="dispBed">-</span></p>
                 </div>
-                <a id="btnBukaEMR" href="#" target="_blank" class="w-full sm:w-auto text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2.5 rounded-lg shadow text-sm transition">
+                <a id="btnBukaEMR" href="#" target="_blank"
+                    class="w-full sm:w-auto text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2.5 rounded-lg shadow text-sm transition">
                     Buka EMR Pasien &rarr;
                 </a>
             </div>
@@ -28,11 +34,13 @@
         <div class="bg-white rounded-xl shadow p-6 space-y-4">
             <div class="flex justify-between items-center">
                 <h2 class="text-base font-bold text-gray-800">Format Catatan SOAP (Siap Tempel)</h2>
-                <button onclick="salinTeks('textSOAP', 'btnSalinSOAP')" id="btnSalinSOAP" class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold py-1.5 px-3 rounded shadow transition">
+                <button onclick="salinTeks('textSOAP', 'btnSalinSOAP')" id="btnSalinSOAP"
+                    class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold py-1.5 px-3 rounded shadow transition">
                     Salin Teks SOAP
                 </button>
             </div>
-            <textarea id="textSOAP" rows="6" readonly class="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 font-mono focus:outline-none"></textarea>
+            <textarea id="textSOAP" rows="6" readonly
+                class="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 font-mono focus:outline-none"></textarea>
         </div>
 
         <!-- JSON DATA PASIEN (UNTUK EXTENSION / AUTOMATION) -->
@@ -42,23 +50,27 @@
                     <h2 class="text-base font-bold text-gray-800">Data Objek JSON Pasien</h2>
                     <p class="text-xs text-gray-500">Data terstruktur untuk injeksi otomatis via bookmarklet.</p>
                 </div>
-                <button onclick="salinTeks('textJSON', 'btnSalinJSON')" id="btnSalinJSON" class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold py-1.5 px-3 rounded shadow transition">
+                <button onclick="salinTeks('textJSON', 'btnSalinJSON')" id="btnSalinJSON"
+                    class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold py-1.5 px-3 rounded shadow transition">
                     Salin JSON
                 </button>
             </div>
-            <textarea id="textJSON" rows="5" readonly class="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-emerald-800 font-mono focus:outline-none"></textarea>
+            <textarea id="textJSON" rows="5" readonly
+                class="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-emerald-800 font-mono focus:outline-none"></textarea>
         </div>
 
         <!-- TUTORIAL CARA PENGISIAN CEPAT DENGAN BOOKMARKLET -->
         <div class="bg-white rounded-xl shadow p-6 space-y-4">
             <h2 class="text-base font-bold text-gray-800">Tutorial: Isi CPPT Sekali Klik via Bookmarklet</h2>
-            
+
             <div class="text-sm text-gray-600 space-y-3">
-                <p><strong>Langkah 1:</strong> Simpan tombol di bawah ini ke Bookmark Bar browser Anda (Drag & Drop tombol ini ke Bookmarks Bar Chrome):</p>
-                
+                <p><strong>Langkah 1:</strong> Simpan tombol di bawah ini ke Bookmark Bar browser Anda (Drag & Drop
+                    tombol ini ke Bookmarks Bar Chrome):</p>
+
                 <div class="p-3 bg-amber-50 rounded-lg border border-amber-200 flex items-center justify-between">
                     <!-- BOOKMARKLET INJECTOR EMR -->
-                    <a id="linkBookmarklet" href="#" class="inline-block bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2 px-4 rounded shadow cursor-grab">
+                    <a id="linkBookmarklet" href="#"
+                        class="inline-block bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2 px-4 rounded shadow cursor-grab">
                         📥 Injeksi CPPT Ekstubasi
                     </a>
                     <span class="text-xs text-amber-800 italic">Seret tombol oranye ini ke Bookmark Bar</span>
@@ -66,7 +78,8 @@
 
                 <p><strong>Langkah 2:</strong> Klik tombol <strong>"Salin JSON"</strong> di atas.</p>
                 <p><strong>Langkah 3:</strong> Buka halaman EMR PJNHK pasien tersebut.</p>
-                <p><strong>Langkah 4:</strong> Klik bookmark <strong>"Injeksi CPPT Ekstubasi"</strong> di toolbar browser Anda. Kolom SOAP CPPT di EMR akan otomatis terisi sesuai format!</p>
+                <p><strong>Langkah 4:</strong> Klik bookmark <strong>"Injeksi CPPT Ekstubasi"</strong> di toolbar
+                    browser Anda. Kolom SOAP CPPT di EMR akan otomatis terisi sesuai format!</p>
             </div>
         </div>
 
@@ -87,8 +100,8 @@
             batuk: params.get('batuk') || '',
             sputum: params.get('sputum') || '',
             gcs: params.get('gcs') || '',
-            konsulen: params.get('konsulen') || '',
-            emr_url: params.get('emr_url') || ''
+            // konsulen: params.get('konsulen') || '',
+            // emr_url: params.get('emr_url') || ''
         };
 
         // Render Data ke Header Tampilan
@@ -102,21 +115,24 @@
         document.getElementById('btnBukaEMR').href = targetEMR;
 
         // Susun Format SOAP
-        const soapText = 
-`S: Pasien weaning ventilator. Telah dievaluasi kesiapan ekstubasi via sistem pelaporan ICU.
-O: RSBI: ${data.rsbi} /min/L, VE: ${data.ve} L/min, FiO2: ${data.fio2}%, PEEP: ${data.peep} cmH2O. Refleks batuk: ${data.batuk}, Sputum: ${data.sputum}, GCS: ${data.gcs}.
-A: Gagal napas perbaikan, kriteria pro-ekstubasi terpenuhi.
-P: ACC Ekstubasi sesuai arahan DPJP (${data.konsulen}). Lakukan suctioning sebelum ekstubasi, siapkan terapi oksigen pasca-ekstubasi, monitor ketat TTV/SpO2 tiap 15 menit.`;
+        const s = `Pasien weaning ventilator. Telah dievaluasi kesiapan ekstubasi via sistem pelaporan ICU.`;
+        const o = `RSBI: ${data.rsbi} /min/L, VE: ${data.ve} L/min, FiO2: ${data.fio2}%, PEEP: ${data.peep} cmH2O. Refleks batuk: ${data.batuk}, Sputum: ${data.sputum}, GCS: ${data.gcs}.`;
+        const a = `Gagal napas perbaikan, kriteria pro-ekstubasi terpenuhi.`;
+        const p = `ACC Ekstubasi. Lakukan suctioning sebelum ekstubasi, siapkan terapi oksigen pasca-ekstubasi, monitor ketat TTV/SpO2 tiap 15 menit.`;
+
+        const soapText = `S: ${s}\nO: ${o}\nA: ${a}\nP: ${p}`;
+        data.soap = { s: s, o: o, a: a, p: p };
 
         document.getElementById('textSOAP').value = soapText;
 
         // Susun Format JSON
+        // const jsonString = JSON.stringify(data, null, 2);
         const jsonString = JSON.stringify(data, null, 2);
         document.getElementById('textJSON').value = jsonString;
 
         // Rakit Bookmarklet Injector untuk EMR
         // Kode ini akan membaca clipboard konsulen (hasil paste JSON) lalu menyuntikkannya ke textarea EMR
-        const injectorCode = `javascript:(async function(){try{const txt=await navigator.clipboard.readText();let d;try{d=JSON.parse(txt);}catch(e){d={soap:txt};}const soap=d.soap||("S: Weaning ventilator.\\nO: RSBI: "+d.rsbi+", FiO2: "+d.fio2+"%, PEEP: "+d.peep+". Batuk: "+d.batuk+", GCS: "+d.gcs+".\\nA: Pro ekstubasi terverifikasi.\\nP: ACC Ekstubasi sesuai instruksi DPJP ("+d.konsulen+").");const el=document.querySelector('textarea[name*="cppt"], textarea[id*="cppt"], textarea');if(el){el.value=soap;el.dispatchEvent(new Event('input',{bubbles:true}));alert('CPPT Ekstubasi berhasil diinjeksi!');}else{alert('Elemen textarea CPPT tidak ditemukan di halaman ini.');}}catch(err){alert('Gagal membaca clipboard: '+err.message);}})();`;
+        const injectorCode = `javascript:(async function(){try{const txt=await navigator.clipboard.readText();let d;try{d=JSON.parse(txt);}catch(e){d={soap:txt};}const soap=d.soap||("S: Weaning ventilator.\\nO: RSBI: "+d.rsbi+", FiO2: "+d.fio2+"%, PEEP: "+d.peep+". Batuk: "+d.batuk+", GCS: "+d.gcs+".\\nA: Pro ekstubasi terverifikasi.\\nP: ACC Ekstubasi.");const el=document.querySelector('textarea[name*="cppt"], textarea[id*="cppt"], textarea');if(el){el.value=soap;el.dispatchEvent(new Event('input',{bubbles:true}));alert('CPPT Ekstubasi berhasil diinjeksi!');}else{alert('Elemen textarea CPPT tidak ditemukan di halaman ini.');}}catch(err){alert('Gagal membaca clipboard: '+err.message);}})();`;
 
         document.getElementById('linkBookmarklet').href = injectorCode;
 
@@ -136,4 +152,5 @@ P: ACC Ekstubasi sesuai arahan DPJP (${data.konsulen}). Lakukan suctioning sebel
         }
     </script>
 </body>
+
 </html>
