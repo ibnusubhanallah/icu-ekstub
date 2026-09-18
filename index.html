@@ -179,7 +179,7 @@
 
     <!-- MODAL POPUP QR CODE & WA LINK -->
     <div id="qrModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl">
+        <div class="bg-white rounded-xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl" style="max-width: 500px;">
             <h3 class="text-lg font-bold text-gray-800">Kirim Laporan via WhatsApp</h3>
             <p class="text-xs text-gray-500">Scan QR code menggunakan HP atau klik tombol buka WhatsApp di bawah.</p>
 
@@ -269,8 +269,8 @@
             qrContainer.innerHTML = ''; // bersihkan QR lama jika ada
             new QRCode(qrContainer, {
                 text: waLink,
-                width: 600,
-                height: 600
+                width: 500,
+                height: 500
             });
 
             // Set link tombol
