@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,11 @@
     <!-- Memanggil Tailwind CSS via CDN agar tampilan langsung rapi dan modern -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+
 <body class="bg-gray-100 min-h-screen py-8 px-4">
 
     <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6 border border-gray-200">
-        
+
         <!-- HEADER FORM -->
         <div class="border-b pb-4 mb-6">
             <h2 class="text-2xl font-bold text-gray-800">Form Evaluasi Kriteria Ekstubasi</h2>
@@ -21,41 +23,47 @@
 
         <!-- FORM UTAMA -->
         <form id="formEkstubasi" class="space-y-6">
-            
+            <!-- Input tersembunyi untuk menyimpan link EMR asli dan No. Reg di memori form -->
+            <input type="hidden" id="noReg" name="noReg">
+            <input type="hidden" id="emrUrl" name="emrUrl">
+
             <!-- BAGIAN 1: IDENTITAS PASIEN -->
             <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                <h3 class="text-sm font-semibold text-blue-800 uppercase tracking-wider mb-3">Data Demografi & Lokasi</h3>
+                <h3 class="text-sm font-semibold text-blue-800 uppercase tracking-wider mb-3">Data Demografi & Lokasi
+                </h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase">No. Rekam Medis (RM) *</label>
-                        <input type="text" id="noRM" required placeholder="Contoh: 123456" 
-                               class="mt-1 block w-full rounded-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <input type="text" id="noRM" required placeholder="Contoh: 123456"
+                            class="mt-1 block w-full rounded-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase">Nama Pasien *</label>
-                        <input type="text" id="namaPasien" required placeholder="Nama Lengkap Pasien" 
-                               class="mt-1 block w-full rounded-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <input type="text" id="namaPasien" required placeholder="Nama Lengkap Pasien"
+                            class="mt-1 block w-full rounded-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase">Nomor Bed / Kamar</label>
-                        <input type="text" id="noBed" placeholder="Contoh: Bed 03" 
-                               class="mt-1 block w-full rounded-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <label class="block text-xs font-bold text-gray-700 uppercase">Nomor Bed</label>
+                        <input type="text" id="noBed" placeholder="Contoh: Bed 03"
+                            class="mt-1 block w-full rounded-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                 </div>
             </div>
 
             <!-- BAGIAN 2: PARAMETER RESPIRASI / MEKANIK PARU -->
             <div>
-                <h3 class="text-base font-bold text-gray-900 mb-3 pb-1 border-b border-gray-100">1. Fungsi Respirasi & Mekanik Paru</h3>
-                
+                <h3 class="text-base font-bold text-gray-900 mb-3 pb-1 border-b border-gray-100">1. Fungsi Respirasi &
+                    Mekanik Paru</h3>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- RR -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Respiratory Rate (RR)</label>
                         <div class="mt-1 flex rounded-md shadow-sm">
                             <input type="number" id="rr" placeholder="Misal: 20" min="0" required
-                                   class="block w-full rounded-l-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">/min</span>
+                                class="block w-full rounded-l-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <span
+                                class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">/min</span>
                         </div>
                         <!-- <p class="text-xs text-gray-400 mt-1">Target klinis: &le; 30</p> -->
                     </div>
@@ -65,8 +73,9 @@
                         <label class="block text-sm font-medium text-gray-700">Tidal Volume (VT)</label>
                         <div class="mt-1 flex rounded-md shadow-sm">
                             <input type="number" id="vt" placeholder="Misal: 500" min="0" required
-                                   class="block w-full rounded-l-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">/min/L</span>
+                                class="block w-full rounded-l-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <span
+                                class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">/min/L</span>
                         </div>
                         <!-- <p class="text-xs text-gray-400 mt-1">Target klinis: &le; 800</p> -->
                     </div>
@@ -76,8 +85,9 @@
                         <label class="block text-sm font-medium text-gray-700">Minute Volume (V<sub>E</sub>)</label>
                         <div class="mt-1 flex rounded-md shadow-sm">
                             <input type="number" id="minuteVolume" step="0.1" placeholder="Misal: 8.5" min="0" required
-                                   class="block w-full rounded-l-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">L/min</span>
+                                class="block w-full rounded-l-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <span
+                                class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">L/min</span>
                         </div>
                         <p class="text-xs text-gray-400 mt-1">Target klinis: &lt; 10-15 L/min</p>
                     </div>
@@ -87,8 +97,9 @@
                         <label class="block text-sm font-medium text-gray-700">Fraksi Oksigen (FiO<sub>2</sub>)</label>
                         <div class="mt-1 flex rounded-md shadow-sm">
                             <input type="number" id="fio2" placeholder="Misal: 35" min="21" max="100" required
-                                   class="block w-full rounded-l-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">%</span>
+                                class="block w-full rounded-l-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <span
+                                class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">%</span>
                         </div>
                         <p class="text-xs text-gray-400 mt-1">Target klinis: &le; 40%</p>
                     </div>
@@ -98,8 +109,9 @@
                         <label class="block text-sm font-medium text-gray-700">PEEP</label>
                         <div class="mt-1 flex rounded-md shadow-sm">
                             <input type="number" id="peep" placeholder="Misal: 5" min="0" required
-                                   class="block w-full rounded-l-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">cmH<sub>2</sub>O</span>
+                                class="block w-full rounded-l-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <span
+                                class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">cmH<sub>2</sub>O</span>
                         </div>
                         <p class="text-xs text-gray-400 mt-1">Target klinis: &le; 5-8 cmH<sub>2</sub>O</p>
                     </div>
@@ -108,19 +120,22 @@
 
             <!-- BAGIAN 3: PROTEKSI JALAN NAPAS & KLINIS -->
             <div>
-                <h3 class="text-base font-bold text-gray-900 mb-3 pb-1 border-b border-gray-100">2. Proteksi Jalan Napas & Hemodinamik</h3>
-                
+                <h3 class="text-base font-bold text-gray-900 mb-3 pb-1 border-b border-gray-100">2. Proteksi Jalan Napas
+                    & Hemodinamik</h3>
+
                 <div class="space-y-4">
                     <!-- Refleks Batuk -->
                     <div>
                         <span class="block text-sm font-medium text-gray-700">Refleks Batuk Efektif? *</span>
                         <div class="mt-2 flex space-x-6">
                             <label class="inline-flex items-center cursor-pointer">
-                                <input type="radio" name="refleksBatuk" value="Ya" checked class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                <input type="radio" name="refleksBatuk" value="Ya" checked
+                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
                                 <span class="ml-2 text-sm text-gray-700">Ya (Positif)</span>
                             </label>
                             <label class="inline-flex items-center cursor-pointer">
-                                <input type="radio" name="refleksBatuk" value="Tidak" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                <input type="radio" name="refleksBatuk" value="Tidak"
+                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
                                 <span class="ml-2 text-sm text-gray-700">Tidak / Lemah</span>
                             </label>
                         </div>
@@ -129,7 +144,8 @@
                     <!-- Produksi Sputum -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Produksi Sputum / Sekret</label>
-                        <select id="sputum" class="mt-1 block w-full rounded-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
+                        <select id="sputum"
+                            class="mt-1 block w-full rounded-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
                             <option value="Minimal/Encer">Minimal / Encer</option>
                             <option value="Moderat">Moderat</option>
                             <option value="Banyak/Purulen">Banyak / Purulen (Kental)</option>
@@ -139,9 +155,12 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <!-- GCS / Kesadaran -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Status Neurologis (GCS Motorik)</label>
-                            <select id="gcsMotorik" class="mt-1 block w-full rounded-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
-                                <option value="M6 (Mampu mengikuti perintah)">M6 (Mampu mengikuti perintah sederhana)</option>
+                            <label class="block text-sm font-medium text-gray-700">Status Neurologis (GCS
+                                Motorik)</label>
+                            <select id="gcsMotorik"
+                                class="mt-1 block w-full rounded-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
+                                <option value="M6 (Mampu mengikuti perintah)">M6 (Mampu mengikuti perintah sederhana)
+                                </option>
                                 <option value="M5 (Melokalisir nyeri)">M5 (Melokalisir nyeri)</option>
                                 <option value="Under M5 (Risiko tinggi gagal)">Di bawah M5</option>
                             </select>
@@ -150,10 +169,13 @@
                         <!-- Stabilitas Hemodinamik -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Stabilitas Hemodinamik</label>
-                            <select id="hemodinamik" class="mt-1 block w-full rounded-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
+                            <select id="hemodinamik"
+                                class="mt-1 block w-full rounded-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
                                 <option value="Stabil tanpa vasopressor">Stabil tanpa vasopressor</option>
-                                <option value="Stabil dengan vasopressor dosis rendah">Stabil dengan vasopressor dosis rendah</option>
-                                <option value="Tidak stabil / Support dosis tinggi">Tidak stabil / Vasopressor dosis tinggi</option>
+                                <option value="Stabil dengan vasopressor dosis rendah">Stabil dengan vasopressor dosis
+                                    rendah</option>
+                                <option value="Tidak stabil / Support dosis tinggi">Tidak stabil / Vasopressor dosis
+                                    tinggi</option>
                             </select>
                         </div>
                     </div>
@@ -162,8 +184,10 @@
 
             <!-- BAGIAN 4: TUJUAN KONSULEN -->
             <div class="border-t pt-4">
-                <label class="block text-sm font-bold text-gray-800 uppercase tracking-wider mb-2">Tujuan Notifikasi Konsulen *</label>
-                <select id="konsulen" required class="block w-full rounded-md border border-gray-300 bg-white p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 font-medium">
+                <label class="block text-sm font-bold text-gray-800 uppercase tracking-wider mb-2">Tujuan Notifikasi
+                    Konsulen *</label>
+                <select id="konsulen" required
+                    class="block w-full rounded-md border border-gray-300 bg-white p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 font-medium">
                     <option value="" disabled selected>-- Pilih Konsulen Jaga --</option>
                     <option value="dr. Budi, Sp.An-KIC">dr. Budi, Sp.An-KIC</option>
                     <option value="dr. Siti, Sp.An-KIC">dr. Siti, Sp.An-KIC</option>
@@ -173,8 +197,8 @@
 
             <!-- TOMBOL AKSI -->
             <div class="pt-2">
-                <button type="submit" 
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold p-3 rounded-lg shadow transition duration-150 text-center uppercase tracking-wide cursor-pointer">
+                <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold p-3 rounded-lg shadow transition duration-150 text-center uppercase tracking-wide cursor-pointer">
                     Kirim Permintaan & Kirim WA Konsulen
                 </button>
             </div>
@@ -184,7 +208,37 @@
 
     <!-- JAVASCRIPT UNTUK MENANGKAP DATA DATA FORM -->
     <script>
-        document.getElementById('formEkstubasi').addEventListener('submit', function(event) {
+        // Otomatis berjalan begitu web form terbuka
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            const noReg = urlParams.get('no_reg');
+            const noMR = urlParams.get('no_mr');
+            const namaPasien = urlParams.get('nama_pas');
+            const emrUrl = urlParams.get('emr_url');
+
+            // Auto-fill form jika parameter terdeteksi dari Bookmarklet
+            if (noReg) {
+                document.getElementById('noReg').value = noReg;
+            }
+
+            if (noMR) {
+                const inputRM = document.getElementById('noRM');
+                if (inputRM) inputRM.value = noMR;
+            }
+
+            if (namaPasien) {
+                const inputNama = document.getElementById('namaPasien');
+                if (inputNama) inputNama.value = namaPasien;
+            }
+
+            if (emrUrl) {
+                // Disimpan di form memory
+                document.getElementById('emrUrl').value ="https://emr.pjnhk.go.id/emrri/menu_emg/?no_reg=" + noReg + "&no_mr=" + noMR  + "&nama_pas=" + namaPasien + "&ksi_pulang="; //decodeURIComponent(emrUrl);
+            }
+        });
+
+        document.getElementById('formEkstubasi').addEventListener('submit', function (event) {
             event.preventDefault(); // Mencegah halaman reload saat tombol diklik
 
             // Mengambil nilai dari field input
@@ -195,10 +249,10 @@
             const minuteVolume = document.getElementById('minuteVolume').value;
             const fio2 = document.getElementById('fio2').value;
             const peep = document.getElementById('peep').value;
-            
+
             // Mengambil nilai radio button (Refleks Batuk)
             const refleksBatuk = document.querySelector('input[name="refleksBatuk"]:checked').value;
-            
+
             const sputum = document.getElementById('sputum').value;
             const gcsMotorik = document.getElementById('gcsMotorik').value;
             const hemodinamik = document.getElementById('hemodinamik').value;
@@ -222,12 +276,13 @@
 
             // Menampilkan data di console browser (F12) untuk pengujian awal
             console.log("Data siap dikirim ke API backend Node.js:", dataForm);
-            
+
             alert(`Data Pasien ${namaPasien} (RM: ${noRM}) berhasil disimpan! Sistem akan memicu bot WhatsApp ke ${konsulen}.`);
-            
+
             // Di tahap berikutnya, Anda tinggal menulis perintah fetch() di sini 
             // untuk menembak data ini ke server backend Node.js Anda.
         });
     </script>
 </body>
+
 </html>
