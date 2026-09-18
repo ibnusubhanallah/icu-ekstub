@@ -203,7 +203,7 @@
         // Domain GitHub Pages Anda (Sesuaikan dengan URL akun Anda nanti)
         const GITHUB_PAGES_BASE_URL = window.location.origin + window.location.pathname.replace('index.html', '');
         
-        const injectorCode = "javascript:(function () { const u = new URL(window.location.href); const reg = u.searchParams.get('no_reg').trim() || ''; const rm = u.searchParams.get('no_mr').trim() || ''; const nama = u.searchParams.get('nama_pas').trim() || ''; const targetUrl = `https://ibnusubhanallah.github.io/icu-ekstub/index2.html?no_reg=${encodeURIComponent(reg)}&no_mr=${encodeURIComponent(rm)}&nama_pas=${encodeURIComponent(nama)}`; window.open(targetUrl, '_blank'); })();";
+        const injectorCode = "javascript:(function () { const u = new URL(window.location.href); const reg = u.searchParams.get('no_reg').trim() || ''; const rm = u.searchParams.get('no_mr').trim() || ''; const nama = u.searchParams.get('nama_pas').trim() || ''; const targetUrl = `https://ibnusubhanallah.github.io/icu-ekstub/?no_reg=${encodeURIComponent(reg)}&no_mr=${encodeURIComponent(rm)}&nama_pas=${encodeURIComponent(nama)}`; window.open(targetUrl, '_blank'); })();";
         document.getElementById('linkBookmarklet').href = injectorCode;
 
         // 1. Tangkap parameter dari Bookmarklet EMR jika ada
