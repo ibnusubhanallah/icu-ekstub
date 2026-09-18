@@ -238,6 +238,9 @@
                 // emr_url: document.getElementById('emrUrl').value || ''
             };
 
+            const injectorCode = "javascript:(function () { const u = new URL(window.location.href); const reg = u.searchParams.get('no_reg').trim() || ''; const rm = u.searchParams.get('no_mr').trim() || ''; const nama = u.searchParams.get('nama_pas').trim() || ''; const targetUrl = `https://ibnusubhanallah.github.io/icu-ekstub/index2.html?no_reg=${encodeURIComponent(reg)}&no_mr=${encodeURIComponent(rm)}&nama_pas=${encodeURIComponent(nama)}`; window.open(targetUrl, '_blank'); })();";
+            document.getElementById('linkBookmarklet').href = injectorCode;
+
             // Bangun Link Menuju helper.html beserta parameternya
             const helperParams = new URLSearchParams(dataPasien).toString();
             const helperUrl = `${GITHUB_PAGES_BASE_URL}helper.html?${helperParams}`;
