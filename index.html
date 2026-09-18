@@ -49,15 +49,26 @@
                 <h3 class="text-base font-bold text-gray-900 mb-3 pb-1 border-b border-gray-100">1. Fungsi Respirasi & Mekanik Paru</h3>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- RSBI -->
+                    <!-- RR -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">RSBI (Rapid Shallow Breathing Index)</label>
+                        <label class="block text-sm font-medium text-gray-700">Respiratory Rate (RR)</label>
                         <div class="mt-1 flex rounded-md shadow-sm">
-                            <input type="number" id="rsbi" placeholder="Misal: 65" min="0" required
+                            <input type="number" id="rr" placeholder="Misal: 20" min="0" required
+                                   class="block w-full rounded-l-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">/min</span>
+                        </div>
+                        <!-- <p class="text-xs text-gray-400 mt-1">Target klinis: &le; 30</p> -->
+                    </div>
+
+                    <!-- VT -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Tidal Volume (VT)</label>
+                        <div class="mt-1 flex rounded-md shadow-sm">
+                            <input type="number" id="vt" placeholder="Misal: 500" min="0" required
                                    class="block w-full rounded-l-md border border-gray-300 bg-white p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">/min/L</span>
                         </div>
-                        <p class="text-xs text-gray-400 mt-1">Target klinis: &le; 105 breaths/min/L</p>
+                        <!-- <p class="text-xs text-gray-400 mt-1">Target klinis: &le; 800</p> -->
                     </div>
 
                     <!-- Minute Volume -->
