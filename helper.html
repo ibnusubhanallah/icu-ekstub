@@ -116,7 +116,7 @@
 
         // Susun Format SOAP
         const s = `Pasien weaning ventilator. Telah dievaluasi kesiapan ekstubasi via sistem pelaporan ICU.`;
-        const o = `RSBI: ${data.rsbi} /min/L, VE: ${data.ve} L/min, FiO2: ${data.fio2}%, PEEP: ${data.peep} cmH2O. Refleks batuk: ${data.batuk}, Sputum: ${data.sputum}, GCS: ${data.gcs}.`;
+        const o = `RSBI: ${data.rsbi} /min/L, MVE: ${data.ve} L/min, FiO2: ${data.fio2}%, PEEP: ${data.peep} cmH2O. Refleks batuk: ${data.batuk}, Sputum: ${data.sputum}, GCS: ${data.gcs}.`;
         const a = `Gagal napas perbaikan, kriteria pro-ekstubasi terpenuhi.`;
         const p = `ACC Ekstubasi. Lakukan suctioning sebelum ekstubasi, siapkan terapi oksigen pasca-ekstubasi, monitor ketat TTV/SpO2 tiap 15 menit.`;
 
@@ -132,7 +132,7 @@
 
         // Rakit Bookmarklet Injector untuk EMR
         // Kode ini akan membaca clipboard konsulen (hasil paste JSON) lalu menyuntikkannya ke textarea EMR
-        const injectorCode = `javascript:(async function(){try{const txt=await navigator.clipboard.readText();let d;try{d=JSON.parse(txt);}catch(e){d={soap:txt};}const soap=d.soap||("S: Weaning ventilator.\\nO: RSBI: "+d.rsbi+", FiO2: "+d.fio2+"%, PEEP: "+d.peep+". Batuk: "+d.batuk+", GCS: "+d.gcs+".\\nA: Pro ekstubasi terverifikasi.\\nP: ACC Ekstubasi.");const el=document.querySelector('textarea[name*="cppt"], textarea[id*="cppt"], textarea');if(el){el.value=soap;el.dispatchEvent(new Event('input',{bubbles:true}));alert('CPPT Ekstubasi berhasil diinjeksi!');}else{alert('Elemen textarea CPPT tidak ditemukan di halaman ini.');}}catch(err){alert('Gagal membaca clipboard: '+err.message);}})();`;
+        const injectorCode = `javascript:(async function () {try {const txt = await navigator.clipboard.readText(); let d;try { d = JSON.parse(txt); } catch (e) { d = { soap: txt }; }const s = document.querySelector('textarea[id*="id_sc_field_subjektif"]');const o = document.querySelector('textarea[id*="id_sc_field_objektif"]');const a = document.querySelector('textarea[id*="id_sc_field_asesmen"]');const p = document.querySelector('textarea[id*="id_sc_field_perencanaan"]');try {s.value = d.s; s.dispatchEvent(new Event('input', { bubbles: true }));o.value = d.o; o.dispatchEvent(new Event('input', { bubbles: true }));a.value = d.a; a.dispatchEvent(new Event('input', { bubbles: true }));p.value = d.p; p.dispatchEvent(new Event('input', { bubbles: true }));} catch (e) {alert('Elemen textarea CPPT tidak ditemukan di halaman ini.');}} catch (err) { alert('Gagal membaca clipboard: ' + err.message); }})();`;
 
         document.getElementById('linkBookmarklet').href = injectorCode;
 
