@@ -97,9 +97,9 @@
             ve: params.get('ve') || '',
             fio2: params.get('fio2') || '',
             peep: params.get('peep') || '',
-            batuk: params.get('batuk') || '',
-            sputum: params.get('sputum') || '',
-            gcs: params.get('gcs') || '',
+            batuk: params.get('batuk') == '1' ? 'Ya' : 'Tidak / Lemah' || '',
+            sputum: params.get('sputum') == '0' ? 'Minimal / Encer' : params.get('sputum') == '1' ? 'Moderat' : 'Banyak / Kental' || '',
+            gcsm: params.get('gcsm') == '6' ? 'M6 (Mampu ikuti perintah)' : params.get('gcsm') == '5' ? 'M5 (Melokalisir nyeri)' : 'Di bawah M5' || '',
             // konsulen: params.get('konsulen') || '',
             // emr_url: params.get('emr_url') || ''
         };

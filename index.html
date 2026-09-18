@@ -84,7 +84,7 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Respiratory Rate</label>
                         <div class="mt-1 flex rounded-md shadow-sm">
-                            <input type="number" id="respiratoryRate" placeholder="Misal: 65" required
+                            <input type="number" id="respiratoryRate" placeholder="Misal: 16" required
                                 class="block w-full rounded-l-md border border-gray-300 p-2 text-sm">
                             <span
                                 class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">/min</span>
@@ -93,7 +93,7 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Volume Tidal</label>
                         <div class="mt-1 flex rounded-md shadow-sm">
-                            <input type="number" id="tidalVolume" placeholder="Misal: 65" required
+                            <input type="number" id="tidalVolume" placeholder="Misal: 500" required
                                 class="block w-full rounded-l-md border border-gray-300 p-2 text-sm">
                             <span
                                 class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-xs">mL</span>
@@ -129,11 +129,11 @@
                     <div>
                         <span class="block text-sm font-medium text-gray-700">Refleks Batuk Efektif?</span>
                         <div class="mt-2 flex space-x-6">
-                            <label class="inline-flex items-center"><input type="radio" name="refleksBatuk" value="Ya"
+                            <label class="inline-flex items-center"><input type="radio" name="refleksBatuk" value="1"
                                     checked class="h-4 w-4 text-blue-600"><span class="ml-2 text-sm">Ya
                                     (Positif)</span></label>
                             <label class="inline-flex items-center"><input type="radio" name="refleksBatuk"
-                                    value="Tidak" class="h-4 w-4 text-blue-600"><span class="ml-2 text-sm">Tidak /
+                                    value="0" class="h-4 w-4 text-blue-600"><span class="ml-2 text-sm">Tidak /
                                     Lemah</span></label>
                         </div>
                     </div>
@@ -141,18 +141,18 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Produksi Sekret</label>
                             <select id="sputum" class="mt-1 block w-full rounded-md border border-gray-300 p-2 text-sm">
-                                <option value="Minimal/Encer">Minimal / Encer</option>
-                                <option value="Moderat">Moderat</option>
-                                <option value="Banyak/Purulen">Banyak / Kental</option>
+                                <option value="0">Minimal / Encer</option>
+                                <option value="1">Moderat</option>
+                                <option value="2">Banyak / Kental</option>
                             </select>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Status Neurologis (GCS)</label>
                             <select id="gcsMotorik"
                                 class="mt-1 block w-full rounded-md border border-gray-300 p-2 text-sm">
-                                <option value="M6 (Ikut perintah)">M6 (Mampu ikuti perintah)</option>
-                                <option value="M5 (Lokalisir nyeri)">M5 (Melokalisir nyeri)</option>
-                                <option value="Under M5 (Risiko tinggi)">Di bawah M5</option>
+                                <option value="6">M6 (Mampu ikuti perintah)</option>
+                                <option value="5">M5 (Melokalisir nyeri)</option>
+                                <option value="4">Di bawah M5</option>
                             </select>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
         
         const injectorCode = "javascript:(function () { const u = new URL(window.location.href); const reg = u.searchParams.get('no_reg').trim() || ''; const rm = u.searchParams.get('no_mr').trim() || ''; const nama = u.searchParams.get('nama_pas').trim() || ''; const targetUrl = `https://ibnusubhanallah.github.io/icu-ekstub/index2.html?no_reg=${encodeURIComponent(reg)}&no_mr=${encodeURIComponent(rm)}&nama_pas=${encodeURIComponent(nama)}`; window.open(targetUrl, '_blank'); })();";
         document.getElementById('linkBookmarklet').href = injectorCode;
-        
+
         // 1. Tangkap parameter dari Bookmarklet EMR jika ada
         window.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
@@ -231,13 +231,13 @@
                 rm: document.getElementById('noRM').value,
                 nama: document.getElementById('namaPasien').value,
                 bed: document.getElementById('noBed').value || '-',
-                rsbi: (document.getElementById('respiratoryRate').value / document.getElementById('tidalVolume').value).toFixed(2),
+                rsbi: ((document.getElementById('respiratoryRate').value / document.getElementById('tidalVolume').value)*1000).toFixed(2),
                 ve: document.getElementById('minuteVolume').value,
                 fio2: document.getElementById('fio2').value,
                 peep: document.getElementById('peep').value,
                 batuk: document.querySelector('input[name="refleksBatuk"]:checked').value,
                 sputum: document.getElementById('sputum').value,
-                gcs: document.getElementById('gcsMotorik').value,
+                gcsm: document.getElementById('gcsMotorik').value,
                 // konsulen: namaKonsulen,
                 // emr_url: document.getElementById('emrUrl').value || ''
             };
