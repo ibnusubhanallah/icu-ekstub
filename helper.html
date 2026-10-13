@@ -10,7 +10,7 @@
 
 <body class="bg-slate-100 min-h-screen py-6 px-4">
 
-    <div class="max-w-3xl mx-auto space-y-6">
+    <div class="max-w-3xl mx-auto space-y-4">
 
         <!-- HEADER -->
         <div class="bg-white rounded-xl shadow p-6 border-l-4 border-blue-600">
@@ -33,11 +33,11 @@
         <!-- FORMAT SOAP CPPT -->
         <div class="bg-white rounded-xl shadow p-6 space-y-4">
             <div class="flex justify-between items-center">
-                <h2 class="text-base font-bold text-gray-800">Format Catatan SOAP (Siap Tempel)</h2>
-                <button onclick="salinTeks('textSOAP', 'btnSalinSOAP')" id="btnSalinSOAP"
+                <h2 class="text-base font-bold text-gray-800">Format Catatan SOAP</h2>
+                <!-- <button onclick="salinTeks('textSOAP', 'btnSalinSOAP')" id="btnSalinSOAP"
                     class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold py-1.5 px-3 rounded shadow transition">
                     Salin Teks SOAP
-                </button>
+                </button> -->
             </div>
             <textarea id="textSOAP" rows="6" readonly
                 class="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 font-mono focus:outline-none"></textarea>
@@ -55,7 +55,7 @@
                     Salin JSON
                 </button>
             </div>
-            <textarea id="textJSON" rows="5" readonly
+            <textarea id="textJSON" rows="3" readonly
                 class="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-emerald-800 font-mono focus:outline-none"></textarea>
         </div>
 
@@ -116,7 +116,7 @@
 
         // Susun Format SOAP
         const s = `Pasien weaning ventilator. Telah dievaluasi kesiapan ekstubasi via sistem pelaporan ICU.`;
-        const o = `RSBI: ${data.rsbi} /min/L, MVE: ${data.ve} L/min, FiO2: ${data.fio2}%, PEEP: ${data.peep} cmH2O. Refleks batuk: ${data.batuk}, Sputum: ${data.sputum}, GCS: ${data.gcs}.`;
+        const o = `RSBI: ${data.rsbi} /min/L, MVE: ${data.ve} L/min, FiO2: ${data.fio2}%, PEEP: ${data.peep} cmH2O. Refleks batuk: ${data.batuk}, Sputum: ${data.sputum}, GCS: ${data.gcsm}.`;
         const a = `Gagal napas perbaikan, kriteria pro-ekstubasi terpenuhi.`;
         const p = `ACC Ekstubasi. Lakukan suctioning sebelum ekstubasi, siapkan terapi oksigen pasca-ekstubasi, monitor ketat TTV/SpO2 tiap 15 menit.`;
 
@@ -132,7 +132,7 @@
 
         // Rakit Bookmarklet Injector untuk EMR
         // Kode ini akan membaca clipboard konsulen (hasil paste JSON) lalu menyuntikkannya ke textarea EMR
-        const injectorCode = `javascript:(async function () {try {const txt = await navigator.clipboard.readText(); let d;try { d = JSON.parse(txt); } catch (e) { d = { soap: txt }; }const s = document.querySelector('textarea[id*="id_sc_field_subjektif"]');const o = document.querySelector('textarea[id*="id_sc_field_objektif"]');const a = document.querySelector('textarea[id*="id_sc_field_asesmen"]');const p = document.querySelector('textarea[id*="id_sc_field_perencanaan"]');try {s.value = d.s; s.dispatchEvent(new Event('input', { bubbles: true }));o.value = d.o; o.dispatchEvent(new Event('input', { bubbles: true }));a.value = d.a; a.dispatchEvent(new Event('input', { bubbles: true }));p.value = d.p; p.dispatchEvent(new Event('input', { bubbles: true }));} catch (e) {alert('Elemen textarea CPPT tidak ditemukan di halaman ini.');}} catch (err) { alert('Gagal membaca clipboard: ' + err.message); }})();`;
+        const injectorCode = `javascript:(async function () {try {let txt = await navigator.clipboard.readText(); let d; try { d = JSON.parse(txt).soap; } catch (e) { alert('Clipboard tidak berisi data JSON yang valid.'); return; } const f = document.querySelector('#iframe_menu_emg').contentWindow.document.querySelector('#iframe_menu_emg1').contentDocument.querySelector('#nmsc_iframe_grid_public_ksi_cppt_dtl_new_1').contentDocument;const s = f.querySelector('textarea[id*="id_sc_field_subjektif"]'); const o = f.querySelector('textarea[id*="id_sc_field_objektif"]'); const a = f.querySelector('textarea[id*="id_sc_field_asesmen"]'); const p = f.querySelector('textarea[id*="id_sc_field_perencanaan"]'); try { s.value = d.s; s.dispatchEvent(new Event('input', { bubbles: true })); o.value = d.o; o.dispatchEvent(new Event('input', { bubbles: true })); a.value = d.a; a.dispatchEvent(new Event('input', { bubbles: true })); p.value = d.p; p.dispatchEvent(new Event('input', { bubbles: true })); } catch (e) { alert('Elemen textarea CPPT tidak ditemukan di halaman ini.'); }} catch (err) { alert('Gagal membaca clipboard: ' + err.message); }})();`;
 
         document.getElementById('linkBookmarklet').href = injectorCode;
 
